@@ -1,0 +1,98 @@
+
+\newpage
+
+\begin{flushright}
+    \vspace{10cm}
+    \rule{18cm}{5pt}
+    \rule{18cm}{2pt}\vskip1cm
+    \begin{center}
+    \begin{bfseries}
+        \Huge{Provide summary}\\
+    \end{bfseries}
+    \end{center}
+    \vspace{1cm}
+    \rule{18cm}{2pt}
+    \rule{18cm}{5pt}
+\end{flushright}
+\clearpage
+\chapter{Introduction}
+% \label{chp:1}
+
+The given paper titled as \textit{\textbf{Performance Evaluation of Distributed Systems in Multiple Clouds using Docker Swarm}} authored by "\textbf{N. Naik}", focuses on Docker Swarm-based Distributed System in Multiple Clouds[1].
+\newline
+
+This report attempts to review the given literature and then provides a summary.
+\let\clearpage\relax
+
+\chapter{Summary}
+\label{chp:2}
+The authors present a study on designing distributed systems in multiple clouds using Docker Swarm. They emphasize the benefits of multi-cloud infrastructure and discuss the challenges it entails. \textbf{Docker} is introduced as an \textbf{efficient platform for application development} through \textbf{containerization}. \textbf{Docker Swarm} [15] is highlighted as a \textbf{clustering tool} that addresses critical issues in provisioning, configuration management, load balancing, and migration. Overall, the paper provides insights into building robust distributed systems across multiple cloud environments using Docker Swarm.
+\newline
+
+% \chapter{Addressed Issue}
+% \label{chp:3}
+The paper specifically addresses the challenge of designing distributed systems across multiple cloud environments. It highlights the \textbf{issues} related to \textbf{provisioning, configuration management, load balancing, and} migration in such setups. The authors propose Docker Swarm as a solution to these challenges, as it provides a clustering mechanism that enables efficient application development through containerization. By leveraging Docker Swarm, the paper presents a framework for building robust distributed systems that can seamlessly operate in multi-cloud infrastructures.
+\newline
+
+% \chapter{Experiments or Studies}
+% \label{chp:4}
+The paper describes several experiments and studies conducted to validate the proposed framework. The authors set up a test environment consisting of multiple cloud providers\textbf{(AWS, Azure, GCP, Digital Ocean \& Softlayer)} and deployed a distributed application using Docker Swarm. They \textbf{evaluated} the \textbf{performance and scalability} of the system by \textbf{measuring response times, throughput}, and \textbf{resource utilization} under different workload conditions. Additionally, they conducted experiments to analyze the impact of network latency and node failures on the overall system performance. The \textbf{results} of these experiments demonstrated the \textbf{effectiveness} of the proposed framework in achieving efficient resource utilization, \textbf{fault tolerance}, and \textbf{seamless scalability} in multi-cloud environments.
+\newline
+
+% \chapter{Analysis and Findings}
+% \label{chp:5}
+The authors' analysis and findings demonstrated that their \textbf{framework improved resource utilization} in multi-cloud environments by distributing tasks effectively. The experiments showed scalability and fault tolerance, with the system adapting to workload changes and recovering from failures. \textbf{Network latency} was identified as an \textbf{influential factor}, underscoring the importance of efficient communication and task allocation. Overall, the framework proved advantageous for efficient resource management and fault tolerance in multi-cloud settings.
+\newline
+
+% \chapter{Conclusion}
+% \label{chp:6}
+In conclusion, the authors presented a framework for efficient resource management in multi-cloud environments. Their approach effectively distributed tasks, improved resource utilization, and demonstrated scalability and fault tolerance. The experiments highlighted the significance of network latency and emphasized the need for efficient communication and task allocation. The findings underscored the framework's ability to adapt to workload changes and recover from failures. Overall, the study showcased the advantages of the proposed framework in enhancing resource management and fault tolerance in multi-cloud settings.
+\newline\newline
+\textbf{My suggestions on areas of improvement:}
+\newline\newline
+The paper could \textbf{discuss the limitations of its experimental setup}. For example, the authors only tested the system with a small number of nodes. But according to [16], Kubernetes is a good choice, when the scale, complexity, and management of the containers increase.  Hence, It would be interesting to see how the system performs with a larger number of nodes.
+\newline
+The paper could \textbf{suggest potential areas for future exploration}. For example, the authors could explore how Docker Swarm could be used to build distributed systems that are more secure or more efficient.\newline
+The paper could \textbf{provide alternative perspectives on the findings}. For example, the authors could compare the performance of Docker Swarm to other container orchestration tools, such as Kubernetes[17], and K3s[18]. \newline
+
+ % \let\clearpage\relax
+
+\newpage
+
+\comment{
+\chapter*{Revision History}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+	    Date & Version & Description & Author\\
+        \hline
+	     04-Mar-2021 & 1.0 & Interaction Diagram Document - Initial Release. & All\\
+        \hline
+	    %31 & 32 & 33 & 34\\
+        % \hline
+    \end{tabular}
+\end{center}
+
+
+
+\newpage
+\tableofcontents
+}
+
+\comment{
+\chapter{Interaction Diagram}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=17.5cm]{04 - Interaction Diagram/Quiz Application-2.png}
+    \caption{\textbf{\textit{Login functionality - Interaction diagram}}}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=17.5cm]{04 - Interaction Diagram/Quiz Application-1.png}
+    \caption{\textbf{\textit{Quiz Application - Interaction diagram }}}
+    \label{fig:my_label}
+\end{figure}
+}

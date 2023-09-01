@@ -1,0 +1,13 @@
+Add InvokeFunction permission created in cli:
+Bucket1:
+aws lambda add-permission --function-name arn:aws:lambda:us-east-1:000966082997:function:extractFeatures --action lambda:InvokeFunction --principal 000966082997 --source-arn arn:aws:s3:::sample-data-b00936916 --statement-id s3_trigger
+
+Bucket2:
+aws lambda add-permission --function-name arn:aws:lambda:us-east-1:000966082997:function:accessDB --action lambda:InvokeFunction --principal 000966082997 --source-arn arn:aws:s3:::tags-b00936916 --statement-id s3_trigger
+
+Add s3 trigger:
+Bucket1:
+aws s3api put-bucket-notification-configuration --bucket sample-data-b00936916 --notification-configuration file://trigger_configuration_sample-data-b00936916.json
+
+Bucket2:
+aws s3api put-bucket-notification-configuration --bucket tags-b00936916 --notification-configuration file://trigger_configuration_tags-b00936916.json

@@ -1,0 +1,424 @@
+{
+  "service": {
+    "service": "CarService",
+    "serviceObject": {
+      "name": "CarService"
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "python3.8",
+      "region": "us-east-1",
+      "stage": "dev",
+      "versionFunctions": true,
+      "compiledCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketEncryption": {
+                "ServerSideEncryptionConfiguration": [
+                  {
+                    "ServerSideEncryptionByDefault": {
+                      "SSEAlgorithm": "AES256"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ServerlessDeploymentBucketPolicy": {
+            "Type": "AWS::S3::BucketPolicy",
+            "Properties": {
+              "Bucket": {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "s3:*",
+                    "Effect": "Deny",
+                    "Principal": "*",
+                    "Resource": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      },
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            }
+                          ]
+                        ]
+                      }
+                    ],
+                    "Condition": {
+                      "Bool": {
+                        "aws:SecureTransport": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "SendOrderDetailsToSNS": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "FunctionName": "sendOrderDetailsToSNS",
+              "Code": {
+                "ZipFile": "import json\ndef lambda_handler(event, context):\n    # TODO implement\n    return {\n        'statusCode': 200,\n        'body': json.dumps('Hello from Lambda!')\n    }\n"
+              },
+              "Handler": "app.lambda_handler",
+              "Runtime": "python3.8",
+              "MemorySize": 512,
+              "Timeout": 10,
+              "Role": "arn:aws:iam::000966082997:role/lambdaRole-Part-C"
+            }
+          },
+          "SendOrderDetailsToHalifaxTaxi": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "FunctionName": "sendOrderDetailsToHalifaxTaxi",
+              "Code": {
+                "ZipFile": "import json\ndef lambda_handler(event, context):\n    # TODO implement\n    return {\n        'statusCode': 200,\n        'body': json.dumps('Hello from Lambda!')\n    }\n"
+              },
+              "Handler": "app.handler",
+              "Runtime": "python3.8",
+              "MemorySize": 512,
+              "Timeout": 10,
+              "Role": "arn:aws:iam::000966082997:role/lambdaRole-Part-C"
+            }
+          },
+          "SnsTopicToSqs": {
+            "Type": "AWS::SNS::Topic",
+            "Properties": {
+              "TopicName": "SendOrderDetailsToSQS"
+            }
+          },
+          "SnsSubscriptionToSqs": {
+            "Type": "AWS::SNS::Subscription",
+            "Properties": {
+              "TopicArn": {
+                "Ref": "SnsTopicToSqs"
+              },
+              "Protocol": "lambda",
+              "Endpoint": {
+                "Fn::GetAtt": [
+                  "SendOrderDetailsToSNS",
+                  "Arn"
+                ]
+              }
+            }
+          },
+          "SnsTopicToEmail": {
+            "Type": "AWS::SNS::Topic",
+            "Properties": {
+              "TopicName": "SendOrderDetailsToEmail",
+              "Subscription": [
+                {
+                  "Protocol": "email",
+                  "Endpoint": "vikramvenkatapathi@gmail.com"
+                }
+              ]
+            }
+          },
+          "SnsSubscriptionToEmail": {
+            "Type": "AWS::SNS::Subscription",
+            "Properties": {
+              "TopicArn": {
+                "Ref": "SnsTopicToEmail"
+              },
+              "Protocol": "lambda",
+              "Endpoint": {
+                "Fn::GetAtt": [
+                  "SendOrderDetailsToHalifaxTaxi",
+                  "Arn"
+                ]
+              }
+            }
+          },
+          "SNStoHalifaxTaxiQueue": {
+            "Type": "AWS::SQS::Queue",
+            "Properties": {
+              "QueueName": "SNStoHalifaxTaxiQueue"
+            }
+          },
+          "SqsSubscriptionToSns": {
+            "Type": "AWS::SNS::Subscription",
+            "Properties": {
+              "TopicArn": {
+                "Ref": "SnsTopicToSqs"
+              },
+              "Protocol": "sqs",
+              "Endpoint": {
+                "Fn::GetAtt": [
+                  "SNStoHalifaxTaxiQueue",
+                  "Arn"
+                ]
+              }
+            }
+          },
+          "SendOrderDetailsToHalifaxTaxiSchedule": {
+            "Type": "AWS::Events::Rule",
+            "Properties": {
+              "ScheduleExpression": "rate(2 minutes)",
+              "Targets": [
+                {
+                  "Arn": "arn:aws:lambda:us-east-1:000966082997:function:sendOrderDetailsToHalifaxTaxi",
+                  "Id": "SendOrderDetailsToHalifaxTaxiScheduleTarget"
+                }
+              ]
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            },
+            "Export": {
+              "Name": "sls-CarService-dev-ServerlessDeploymentBucketName"
+            }
+          }
+        }
+      },
+      "coreCloudFormationTemplate": {
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "The AWS CloudFormation template for this Serverless application",
+        "Resources": {
+          "ServerlessDeploymentBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketEncryption": {
+                "ServerSideEncryptionConfiguration": [
+                  {
+                    "ServerSideEncryptionByDefault": {
+                      "SSEAlgorithm": "AES256"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ServerlessDeploymentBucketPolicy": {
+            "Type": "AWS::S3::BucketPolicy",
+            "Properties": {
+              "Bucket": {
+                "Ref": "ServerlessDeploymentBucket"
+              },
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "s3:*",
+                    "Effect": "Deny",
+                    "Principal": "*",
+                    "Resource": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      },
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:",
+                            {
+                              "Ref": "AWS::Partition"
+                            },
+                            ":s3:::",
+                            {
+                              "Ref": "ServerlessDeploymentBucket"
+                            }
+                          ]
+                        ]
+                      }
+                    ],
+                    "Condition": {
+                      "Bool": {
+                        "aws:SecureTransport": false
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "Outputs": {
+          "ServerlessDeploymentBucketName": {
+            "Value": {
+              "Ref": "ServerlessDeploymentBucket"
+            }
+          }
+        }
+      }
+    },
+    "pluginsData": {},
+    "functions": {},
+    "resources": {
+      "Resources": {
+        "SendOrderDetailsToSNS": {
+          "Type": "AWS::Lambda::Function",
+          "Properties": {
+            "FunctionName": "sendOrderDetailsToSNS",
+            "Code": {
+              "ZipFile": "import json\ndef lambda_handler(event, context):\n    # TODO implement\n    return {\n        'statusCode': 200,\n        'body': json.dumps('Hello from Lambda!')\n    }\n"
+            },
+            "Handler": "app.lambda_handler",
+            "Runtime": "python3.8",
+            "MemorySize": 512,
+            "Timeout": 10,
+            "Role": "arn:aws:iam::000966082997:role/lambdaRole-Part-C"
+          }
+        },
+        "SendOrderDetailsToHalifaxTaxi": {
+          "Type": "AWS::Lambda::Function",
+          "Properties": {
+            "FunctionName": "sendOrderDetailsToHalifaxTaxi",
+            "Code": {
+              "ZipFile": "import json\ndef lambda_handler(event, context):\n    # TODO implement\n    return {\n        'statusCode': 200,\n        'body': json.dumps('Hello from Lambda!')\n    }\n"
+            },
+            "Handler": "app.handler",
+            "Runtime": "python3.8",
+            "MemorySize": 512,
+            "Timeout": 10,
+            "Role": "arn:aws:iam::000966082997:role/lambdaRole-Part-C"
+          }
+        },
+        "SnsTopicToSqs": {
+          "Type": "AWS::SNS::Topic",
+          "Properties": {
+            "TopicName": "SendOrderDetailsToSQS"
+          }
+        },
+        "SnsSubscriptionToSqs": {
+          "Type": "AWS::SNS::Subscription",
+          "Properties": {
+            "TopicArn": {
+              "Ref": "SnsTopicToSqs"
+            },
+            "Protocol": "lambda",
+            "Endpoint": {
+              "Fn::GetAtt": [
+                "SendOrderDetailsToSNS",
+                "Arn"
+              ]
+            }
+          }
+        },
+        "SnsTopicToEmail": {
+          "Type": "AWS::SNS::Topic",
+          "Properties": {
+            "TopicName": "SendOrderDetailsToEmail",
+            "Subscription": [
+              {
+                "Protocol": "email",
+                "Endpoint": "vikramvenkatapathi@gmail.com"
+              }
+            ]
+          }
+        },
+        "SnsSubscriptionToEmail": {
+          "Type": "AWS::SNS::Subscription",
+          "Properties": {
+            "TopicArn": {
+              "Ref": "SnsTopicToEmail"
+            },
+            "Protocol": "lambda",
+            "Endpoint": {
+              "Fn::GetAtt": [
+                "SendOrderDetailsToHalifaxTaxi",
+                "Arn"
+              ]
+            }
+          }
+        },
+        "SNStoHalifaxTaxiQueue": {
+          "Type": "AWS::SQS::Queue",
+          "Properties": {
+            "QueueName": "SNStoHalifaxTaxiQueue"
+          }
+        },
+        "SqsSubscriptionToSns": {
+          "Type": "AWS::SNS::Subscription",
+          "Properties": {
+            "TopicArn": {
+              "Ref": "SnsTopicToSqs"
+            },
+            "Protocol": "sqs",
+            "Endpoint": {
+              "Fn::GetAtt": [
+                "SNStoHalifaxTaxiQueue",
+                "Arn"
+              ]
+            }
+          }
+        },
+        "SendOrderDetailsToHalifaxTaxiSchedule": {
+          "Type": "AWS::Events::Rule",
+          "Properties": {
+            "ScheduleExpression": "rate(2 minutes)",
+            "Targets": [
+              {
+                "Arn": "arn:aws:lambda:us-east-1:000966082997:function:sendOrderDetailsToHalifaxTaxi",
+                "Id": "SendOrderDetailsToHalifaxTaxiScheduleTarget"
+              }
+            ]
+          }
+        }
+      },
+      "Outputs": {}
+    },
+    "configValidationMode": "warn",
+    "serviceFilename": "serverless.yml",
+    "initialServerlessConfig": {
+      "service": "CarService",
+      "provider": {
+        "$ref": "$[\"service\"][\"provider\"]"
+      },
+      "resources": {
+        "$ref": "$[\"service\"][\"resources\"]"
+      }
+    },
+    "layers": {},
+    "isDashboardMonitoringPreconfigured": false
+  },
+  "package": {
+    "artifactDirectoryName": "serverless/CarService/dev/1690089213931-2023-07-23T05:13:33.931Z",
+    "artifact": ""
+  }
+}

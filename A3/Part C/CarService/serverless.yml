@@ -1,0 +1,111 @@
+service: CarService
+provider:
+  name: aws
+  runtime: python3.8
+  region: us-east-1  
+  stage: dev 
+
+resources:
+  Resources:
+    # 1st Lambda Function to Send order details to SNS 
+    SendOrderDetailsToSNS:
+      Type: AWS::Lambda::Function
+      Properties:
+        FunctionName: sendOrderDetailsToSNS
+        Code:
+          ZipFile: | 
+            import json
+            def lambda_handler(event, context):
+                # TODO implement
+                return {
+                    'statusCode': 200,
+                    'body': json.dumps('Hello from Lambda!')
+                }
+        Handler: app.lambda_handler  # Ensure that the handler function name matches the code
+        Runtime: python3.8
+        MemorySize: 512
+        Timeout: 10
+        Role: arn:aws:iam::000966082997:role/lambdaRole-Part-C
+
+    # 2nd Lambda Function to Send Order Details to Halifax Taxi
+    SendOrderDetailsToHalifaxTaxi:
+      Type: AWS::Lambda::Function
+      Properties:
+        FunctionName: sendOrderDetailsToHalifaxTaxi
+        Code:
+          ZipFile: |
+            import json
+            def lambda_handler(event, context):
+                # TODO implement
+                return {
+                    'statusCode': 200,
+                    'body': json.dumps('Hello from Lambda!')
+                }
+        Handler: app.handler  # Ensure that the handler function name matches the code
+        Runtime: python3.8
+        MemorySize: 512
+        Timeout: 10
+        Role: arn:aws:iam::000966082997:role/lambdaRole-Part-C
+
+    # 1st SNS Topic - To take order details from Lambda and send to SQS
+    SnsTopicToSqs:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: SendOrderDetailsToSQS
+
+    # 1st SNS Topic Subscription - Lambda subscribing to the SNS topic
+    SnsSubscriptionToSqs:
+      Type: AWS::SNS::Subscription
+      Properties:
+        TopicArn: !Ref SnsTopicToSqs
+        Protocol: lambda
+        Endpoint:
+          Fn::GetAtt:
+            - SendOrderDetailsToSNS
+            - Arn
+
+    # 2nd SNS Topic - To poll order details from SQS and publish to email
+    SnsTopicToEmail:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: SendOrderDetailsToEmail
+        Subscription:
+          - Protocol: email
+            Endpoint: vikramvenkatapathi@gmail.com
+
+    # 2nd SNS Topic Subscription - Lambda subscribing to the SNS topic
+    SnsSubscriptionToEmail:
+      Type: AWS::SNS::Subscription
+      Properties:
+        TopicArn: !Ref SnsTopicToEmail
+        Protocol: lambda
+        Endpoint:
+          Fn::GetAtt:
+            - SendOrderDetailsToHalifaxTaxi
+            - Arn
+    
+    # SQS Queue 
+    SNStoHalifaxTaxiQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: SNStoHalifaxTaxiQueue
+
+    # SQS Queue Subscription - Subscribe SQS to SNS topic
+    SqsSubscriptionToSns:
+      Type: AWS::SNS::Subscription
+      Properties:
+        TopicArn: !Ref SnsTopicToSqs
+        Protocol: sqs
+        Endpoint:
+          Fn::GetAtt:
+            - SNStoHalifaxTaxiQueue
+            - Arn
+
+    # CloudWatch Events Rule to trigger Lambda function periodically every 2 minutes
+    SendOrderDetailsToHalifaxTaxiSchedule:
+      Type: AWS::Events::Rule
+      Properties:
+        ScheduleExpression: rate(2 minutes)
+        Targets:
+          - Arn: arn:aws:lambda:us-east-1:000966082997:function:sendOrderDetailsToHalifaxTaxi
+            Id: SendOrderDetailsToHalifaxTaxiScheduleTarget

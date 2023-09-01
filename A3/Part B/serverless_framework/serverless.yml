@@ -1,0 +1,74 @@
+service: event-driven-serverless-app-a3
+
+provider:
+  name: aws
+  runtime: python3.8
+  stage: dev
+  region: us-east-1
+
+resources:
+  Resources:
+    # 1st S3 Bucket
+    SampleDataBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: sample-data-b00936916 # Actual Bucket Name : SampleDataB00936916 -> Bucket name should not contain uppercase characters
+
+    # 2nd S3 Bucket
+    TagsBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: tags-b00936916 # Actual Bucket Name : TagsB00936916 -> Bucket name should not contain uppercase characters
+
+    # Lambda Function to Extract Named Entities
+    ExtractFeaturesLambda:
+      Type: AWS::Lambda::Function
+      Properties:
+        FunctionName: extractFeatures
+        Code:
+          ZipFile: | #sample code
+            def lambda_handler(event, context):
+            # TODO implement
+              return {
+                'statusCode': 200,
+                'body': json.dumps('Hello from Lambda!')
+              }
+        Handler: app.lambda_handler
+        Runtime: python3.8   # Specify the runtime for the Lambda function
+        MemorySize: 512
+        Timeout: 10
+        Role: arn:aws:iam::000966082997:role/lambdaRole #role with permissions : AWSLambdaExecute, AmazonDynamoDBFullAccess
+
+    # Lambda Function to Access DynamoDB and Update
+    AccessDBLambda:
+      Type: AWS::Lambda::Function
+      Properties:
+        FunctionName: accessDB
+        Code:
+          ZipFile: | #sample code
+            def lambda_handler(event, context):
+            # TODO implement
+              return {
+                'statusCode': 200,
+                'body': json.dumps('Hello from Lambda!')
+              }
+        Handler: app.lambda_handler
+        Runtime: python3.8   # Specify the runtime for the Lambda function
+        MemorySize: 512
+        Timeout: 10
+        Role: arn:aws:iam::000966082997:role/lambdaRole_accessDB #role with permissions : AWSLambdaExecute, AmazonDynamoDBFullAccess
+
+    # DynamoDB Table
+    DynamoDBTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Entities
+        AttributeDefinitions:
+          - AttributeName: entity_name
+            AttributeType: S # Set the AttributeType to String for the partition key "entity_name"
+        KeySchema:
+          - AttributeName: entity_name # Use file_name as the partition key
+            KeyType: HASH  # Set the KeyType to HASH for the partition key "entity_name"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

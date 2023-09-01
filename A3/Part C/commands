@@ -1,0 +1,11 @@
+aws iam create-role --role-name lambdaRole-Part-C --assume-role-policy-document file://AssumeRolePolicyDocument.json
+
+aws iam put-role-policy --role-name lambdaRole-Part-C --policy-name LambdaExecutionPolicy --policy-document file://invokeFunction.json
+
+aws iam attach-role-policy --role-name lambdaRole-Part-C --policy-arn arn:aws:iam::aws:policy/AWSLambdaExecute
+
+aws iam attach-role-policy --role-name lambdaRole-Part-C --policy-arn arn:aws:iam::aws:policy/AmazonSNSFullAccess
+
+aws iam attach-role-policy --role-name lambdaRole-Part-C --policy-arn arn:aws:iam::aws:policy/AmazonSQSFullAccess
+
+

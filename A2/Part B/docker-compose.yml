@@ -1,0 +1,29 @@
+version: '3'
+services:
+  cntr1:
+    # image: us-central1-docker.pkg.dev/assignment-2-389700/k8s-container-1/container1
+    build:
+      context: ./microservice1
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    # volumes:
+    #   - ./:/app
+
+  cntr2:
+    # image: us-central1-docker.pkg.dev/assignment-2-389700/k8s-container-1/container1
+    build:
+      context: ./microservice2
+      dockerfile: Dockerfile
+    ports:
+      - "5001:5001"
+  cntr3:
+    # image: us-central1-docker.pkg.dev/assignment-2-389700/k8s-container-1/container1
+    build:
+      context: ./microservice3
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+
+
+

@@ -1,0 +1,82 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Event-driven Serverless Application with Lambda, S3, and DynamoDB
+
+Resources:
+  # 1st S3 Bucket
+  SampleDataBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: sample-data-b00936916 # Actual Bucket Name : SampleDataB00936916 -> Bucket name should not contain uppercase characters
+
+  # 2nd S3 Bucket
+  TagsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: tags-b00936916 # Actual Bucket Name : TagsB00936916 -> Bucket name should not contain uppercase characters
+
+  # Lambda Function to Extract Named Entities
+  ExtractFeaturesLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: extractFeatures
+      Code:
+        ZipFile: |
+          import json
+          def lambda_handler(event, context):
+          # TODO implement
+            return {
+              'statusCode': 200,
+              'body': json.dumps('Hello from Lambda!')
+            }
+      Handler: app.handler
+      Runtime: python3.8
+      MemorySize: 512
+      Timeout: 10
+      Role: arn:aws:iam::901937685861:role/LabRole
+      Events:
+        S3Event:
+          Type: S3
+          Properties:
+            Bucket: !Ref SampleDataBucket
+            Events: s3:ObjectCreated:Put
+
+  # Lambda Function to Access DynamoDB and Update
+  AccessDBLambda:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: accessDB
+      Code:
+        ZipFile: |
+          import json
+          def lambda_handler(event, context):
+          # TODO implement
+            return {
+              'statusCode': 200,
+              'body': json.dumps('Hello from Lambda!')
+            }
+      Handler: app.handler
+      Runtime: python3.8
+      MemorySize: 512
+      Timeout: 10
+      Role: arn:aws:iam::901937685861:role/LabRole
+      Events:
+        S3Event:
+          Type: S3
+          Properties:
+            Bucket: !Ref TagsBucket
+            Events: s3:ObjectCreated:Put
+
+  # DynamoDB Table
+  DynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Entities
+      AttributeDefinitions:
+        - AttributeName: key
+          AttributeType: S
+      KeySchema:
+        - AttributeName: key
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1

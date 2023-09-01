@@ -1,0 +1,81 @@
+
+\newpage
+
+\begin{flushright}
+    \vspace{10cm}
+    \rule{18cm}{5pt}
+    \rule{18cm}{2pt}\vskip1cm
+    \begin{center}
+    \begin{bfseries}
+        \Huge{Provide summary}\\
+    \end{bfseries}
+    \end{center}
+    \vspace{1cm}
+    \rule{18cm}{2pt}
+    \rule{18cm}{5pt}
+\end{flushright}
+\clearpage
+\chapter{Introduction}
+\label{chp:1}
+
+The given paper titled as \textit{Mitigating Cold Start Problem in Serverless	Computing: A Reinforcement Learning Approach} authored by "P.Vahidinia, B.Farahani and F.S.Aliee", focuses on addressing the challenge of reducing cold start delays in serverless computing[1].
+
+This report attempts to review the given literature and then provides a summary.
+\let\clearpage\relax
+\chapter{Presentation by the Author}
+\label{chp:2}
+The authors present a two-layer approach to address the challenge of reducing cold start delays in serverless computing. The first layer utilizes a reinforcement learning algorithm to discover the function invocation pattern and determine the idle container window. The second layer employs an LSTM (Long Short-Term Memory model) to predict the next invocation time and determine the required number of prewarmed containers.
+\chapter{Addressed Issue}
+\label{chp:3}
+The specific issue addressed in the paper is the reduction of cold start delays in serverless computing. The authors highlight that existing solutions, such as keeping containers warm, often result in fixed policies and memory waste. The proposed approach aims to dynamically determine the idle-container window and the number of prewarmed containers based on the invocation pattern, balancing the reduction of cold start latency with memory consumption.
+\chapter{Experiments or Studies}
+\label{chp:4}
+The authors conducted experiments to evaluate the performance of their approach. They used an I/O bound function that sends an HTTP request to a web page and receives a text file, with a response time of around 6 seconds. Two simulations were performed: one using the Openwhisk platform with default parameters and another using the proposed approach with new parameters derived from their method. The evaluations focused on comparing the idle-container window, number of cold start occurrences, memory consumption, and execution of invocations on prewarmed containers.
+\chapter{Analysis and Findings}
+\label{chp:5}
+The findings of the study demonstrate the effectiveness of the proposed approach in reducing cold start delays and optimizing resource utilization. The authors observed that by dynamically determining the idle-container window based on the invocation pattern, they were able to reduce the number of cold start occurrences and control memory consumption. The number of cold start delays in the proposed approach was comparable to the results of the Openwhisk platform, indicating its effectiveness in mitigating cold start issues. Furthermore, the approach showed improvements in memory consumption time and a 22.65\% enhancement in the execution of invocations on prewarmed containers compared to the platform's default settings.
+\chapter{Conclusion}
+\label{chp:6}
+Overall, the paper presents a two-layer approach that effectively addresses the challenge of reducing cold start delays in serverless computing. The proposed method dynamically determines the idle-container window and the number of prewarmed containers, resulting in improved performance while controlling memory consumption. The experiments and evaluations validate the effectiveness of the approach in reducing cold start occurrences and improving the execution of invocations on prewarmed containers.
+
+ % \let\clearpage\relax
+
+\newpage
+
+\comment{
+\chapter*{Revision History}
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+	    Date & Version & Description & Author\\
+        \hline
+	     04-Mar-2021 & 1.0 & Interaction Diagram Document - Initial Release. & All\\
+        \hline
+	    %31 & 32 & 33 & 34\\
+        % \hline
+    \end{tabular}
+\end{center}
+
+
+
+\newpage
+\tableofcontents
+}
+
+\comment{
+\chapter{Interaction Diagram}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=17.5cm]{04 - Interaction Diagram/Quiz Application-2.png}
+    \caption{\textbf{\textit{Login functionality - Interaction diagram}}}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=17.5cm]{04 - Interaction Diagram/Quiz Application-1.png}
+    \caption{\textbf{\textit{Quiz Application - Interaction diagram }}}
+    \label{fig:my_label}
+\end{figure}
+}

@@ -1,0 +1,4 @@
+foreach ($file in Get-ChildItem -File) {
+    aws s3 cp "$file" s3://sample-data-b00936916/
+    Start-Sleep -Milliseconds 100
+}

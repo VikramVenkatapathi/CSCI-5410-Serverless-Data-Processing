@@ -1,0 +1,161 @@
+%Copyright 2014 Jean-Philippe Eisenbarth
+%This program is free software: you can 
+%redistribute it and/or modify it under the terms of the GNU General Public 
+%License as published by the Free Software Foundation, either version 3 of the 
+%License, or (at your option) any later version.
+%This program is distributed in the hope that it will be useful,but WITHOUT ANY 
+%WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+%PARTICULAR PURPOSE. See the GNU General Public License for more details.
+%You should have received a copy of the GNU General Public License along with 
+%this program.  If not, see <http://www.gnu.org/licenses/>.
+
+%Based on the code of Yiannis Lazarides
+%http://tex.stackexchange.com/questions/42602/software-requirements-specification-with-latex
+%http://tex.stackexchange.com/users/963/yiannis-lazarides
+%Also based on the template of Karl E. Wiegers
+%http://www.se.rit.edu/~emad/teaching/slides/srs_template_sep14.pdf
+%http://karlwiegers.com
+\documentclass{scrreprt}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[acronym, toc]{glossaries}
+\usepackage{graphicx}
+\usepackage{calc}
+\usepackage{fontawesome}
+\usepackage[left = 2cm, right = 2cm]{geometry}
+\usepackage{tabularx}
+\usepackage{fontawesome}
+\usepackage[left = 2cm, right = 2cm]{geometry}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{indentfirst}
+\usepackage{svg}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{tabto}
+\usepackage{pdfpages}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{subcaption}
+%Variables
+ \usepackage{courier} %% Sets font for listing as Courier.
+\usepackage{listings, xcolor}
+\date{\today}
+%\title{%
+
+%}
+\usepackage{hyperref}
+\hypersetup{pdfborder=0 0 0}
+
+% custom footers and headers
+\usepackage{fancyhdr}
+\pagestyle{plain}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\newenvironment{usecase}
+{\begin{flushleft}}
+{
+\givenscope 
+\givenlevel 
+\givenactor 
+\givenstake
+\givenpre
+\givenpost
+\givenms
+\givenasf
+\givenass
+\givenast
+\givenasff
+\givenasfff
+\givenfreq
+\end{flushleft}}
+
+
+
+%% custom commands
+\newcommand{\comment}[1]{}
+
+% \usepackage{floatrow}
+% \floatsetup[table]{capposition=top}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{cite}
+
+\usepackage{blindtext}
+\usepackage{xcolor,listings}
+\usepackage{textcomp}
+\lstset{upquote=true}
+
+\usepackage{subfiles} % Best loaded last in the preamble
+\begin{document}
+
+\begin{center}
+  \rule{17cm}{5pt}\vskip1cm
+  \begin{bfseries}
+    \Large{CSCI 5410 Serverless Data Processing}\\
+    \vspace{1.5cm}
+
+    \vspace{1.5cm}
+
+    \vspace{1.5cm}
+    \Huge{Assignment 1 Report}\\
+    \vspace{1.5cm}
+    \LARGE{Prepared by: \\Vikram Venkatapathi - B00936916\\}
+    \vspace{1.5cm}
+    \vspace{1.5cm}
+    \Large{Master of Applied Computer Science (Summer'23)\\
+      Faculty of Computer Science\\
+      Dalhousie University\\
+      \vspace{3cm}
+      GitLab Repo link : \url{https://git.cs.dal.ca/vikramv/csci5410-summer-23-b00936916/-/tree/A1}
+    }
+    %\today\\
+  \end{bfseries}
+\end{center}
+
+
+
+\newpage
+\phantomsection
+
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Table of Contents}
+\tableofcontents
+\newpage
+\phantomsection
+
+%\addcontentsline{toc}{chapter}{\listfigurename}
+
+%\listoffigures
+
+\newpage
+\pagenumbering{arabic}
+\part{PART A}
+\input{PROBLEM 1/pbrlm_1}
+\part{PART B}
+\input{PROBLEM 2/pbrlm_2}
+\appendix
+
+\part{REFERENCES}
+\input{REFERENCES/references}
+% \bibliographystyle{IEEEtran}
+% \bibliography{REFERENCES/references}
+\end{document}

@@ -1,0 +1,11 @@
+sample txt file for testing purposes:
+
+all lowercase   
+                : ggggggg
+all uppercase   
+                : GGGGGGG
+Starting uppercase, 
+other lowercase 
+                : Ggggggg
+numbers         
+                : 0000000
