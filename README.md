@@ -19,13 +19,13 @@
       - **Gained Valuable Experience**: This assignment equipped me with valuable hands-on experience in AWS S3 and Java programming, establishing a robust foundation in serverless computing and cloud storage services.
    - **Keywords: AWS S3, Serverless Computing, AWS SDK for Java, Reinforcement Learning, Long Short-Term Memory (LSTM), GitLab, Maven, HTML, Cold Start Problem, Resource Utilization, Access Control, and Cloud Computing**
 
-2. **[Assignment 2](): **
+2. **[Assignment 2](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/tree/main/A2): **
    - 
    - 
    - 
    - **Keywords: **
 
-3. **[Assignment 3](): **
+3. **[Assignment 3](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/tree/main/A3): **
    - 
    - 
    - 
