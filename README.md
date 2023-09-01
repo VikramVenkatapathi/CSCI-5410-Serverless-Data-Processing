@@ -2,7 +2,7 @@
 
 ## Assignments and Topics
 
-1. **[Assignment 1](): **
+1. **[Assignment 1](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/tree/main/A1):**
    - **PART A**:
       - **Thorough Paper Review**: Meticulously examined the paper titled "Mitigating Cold Start Problem in Serverless Computing: A Reinforcement Learning Approach" by P. Vahidinia, B. Farahani, and F. S. Aliee".Focused on understanding the authors' two-layer approach to reducing cold start delays in serverless computing.
       - **Identified Key Issue**: Pinpointed the primary issue addressed in the paper. The paper's main focus is optimizing serverless performance while minimizing memory waste, aiming to overcome the challenges posed by cold start delays.
@@ -13,8 +13,11 @@
       - **Developed File Upload Functionality**: Developed a method to seamlessly upload the 'index.html' file into the S3 bucket, enabling smooth integration between local files and cloud storage.
       - **Ensured Secure AWS Access**: Utilized the ProfileCredentialsProvider to guarantee secure access to AWS services by effectively managing AWS Access Key ID and Secret Access Key.
       - **Thoroughly Documented Codebase**: Meticulously documented the codebase and provided references to official AWS SDK documentation, enhancing overall codebase clarity and transparency.
+      - **Enabled Static Website Hosting**: Configured static website hosting for an AWS S3 bucket by enabling it, specifying the index file, and saving the changes.
+      - **Adjusted Permissions**: Modified bucket permissions to allow public read access by editing the bucket policy and disabling "Block all public access."
+      - **Confirmed Website Availability**: Successfully accessed and viewed the 'index.html' file on the website endpoint after making the necessary configurations, ensuring proper setup.
       - **Gained Valuable Experience**: This assignment equipped me with valuable hands-on experience in AWS S3 and Java programming, establishing a robust foundation in serverless computing and cloud storage services.
-   - **Keywords: **
+   - **Keywords: AWS S3, Serverless Computing, AWS SDK for Java, Reinforcement Learning, Long Short-Term Memory (LSTM), GitLab, Maven, HTML, Cold Start Problem, Resource Utilization, Access Control, and Cloud Computing**
 
 2. **[Assignment 2](): **
    - 
