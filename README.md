@@ -29,7 +29,14 @@
       - **Cloud Run Deployment**: Deployed container images as services on Google Cloud Run, configuring appropriate ports and settings.
       - **User Registration and Authentication**: Implemented user registration and authentication logic in Container-1 and Container-2, respectively, securely storing user data in Firestore collections.
       - **Session Management**: Container-3 managed user sessions, updated user state (online/offline) in the Firestore database, and provided real-time information on online users.
-        
+      - #### Architecture
+      ![Architecture](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/blob/main/A2/Part%20B/Screenshots/Flowchart.png)
+   - **PART C - Building a Chatbot: Using AWS Lex**:
+      - **Create Chatbot**: Utilized AWS Lex to build a chatbot for a Taxi and Car rental service, designing it to handle user requests for both taxi rides and self-drive rentals.
+      - **Intents and Sample Utterances**: Defined two intents, "TaxiRequest" and "SelfDriveRequest," with appropriate sample utterances to capture user requests accurately.
+      - **Slot Configuration**: Set up slots to gather essential information from users, such as pickup address, pickup date, pickup time, vehicle type, and the number of vehicles. Configured prompts for each slot to guide user input.
+      - **Confirmation Prompts**: Implemented confirmation prompts with variable placeholders to confirm user requests, ensuring accuracy before proceeding.
+      - **Fulfillment Logic**: Established fulfillment logic for both intents, providing success and failure messages to acknowledge user requests and handle potential issues.     
    - **Keywords: GCP, Containerized Application, Firestore, Microservices, Docker Images, Artifact Registry, Cloud Run, AWS Lex, Chatbot, Intents, Slots, Fulfillment Logic, Self-Drive, Taxi Service, User Interaction.**
 
 3. **[Assignment 3](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/tree/main/A3):**
@@ -38,19 +45,25 @@
       - **Use Case**: Real-time data from IoT devices and POS systems is streamed through Kinesis, enabling demand forecasting, automated reordering, and sentiment analysis via AWS services.
       - **Architecture**: The system includes IoT Core, Kinesis Data Streams, Analytics, Lambda, Comprehend, DynamoDB, and QuickSight, ensuring real-time insights.
       - **Benefits**: Precise inventory control minimizes wastage, stockouts, and manual efforts, leading to improved customer satisfaction and operational efficiency.
-      - **AWS Services**: AWS Kinesis, IoT Core, Lambda, Comprehend, DynamoDB, and QuickSight power this innovative solution. 
+      - **AWS Services**: AWS Kinesis, IoT Core, Lambda, Comprehend, DynamoDB, and QuickSight power this innovative solution.
+      - #### Architecture
+      ![Architecture](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/blob/main/A3/Part%20A/Diagram.drawio.png)
    - **PART B - Event-driven serverless application using AWS Lambda**:
-      - Bucket Creation: Created S3 buckets (SampleDataB00936916 and TagsB00936916) for data storage.
-      - Lambda Functions: Implemented two Lambda functions, "extractFeatures" and "accessDB," for data processing and database updates.
-      - DynamoDB Integration: Utilized DynamoDB to store named entities and their frequencies.
-      - Event Trigger: Configured S3 event notifications to trigger Lambda functions upon file uploads.
-      - Data Processing: Extracted named entities from uploaded files, generated JSON data, and updated DynamoDB records accordingly.
-      - Serverless Framework: Utilized [Serverless Framework](https://www.serverless.com/) to deploy and manage AWS resources and Lambda functions for this project. 
+      - **Bucket Creation**: Created S3 buckets (SampleDataB00936916 and TagsB00936916) for data storage.
+      - **Lambda Functions**: Implemented two Lambda functions, "extractFeatures" and "accessDB," for data processing and database updates.
+      - **DynamoDB Integration**: Utilized DynamoDB to store named entities and their frequencies.
+      - **Event Trigger**: Configured S3 event notifications to trigger Lambda functions upon file uploads.
+      - **Data Processing**: Extracted named entities from uploaded files, generated JSON data, and updated DynamoDB records accordingly.
+      - **Serverless Framework**: Utilized [Serverless Framework](https://www.serverless.com/) to deploy and manage AWS resources and Lambda functions for this project.
+      - #### Architecture
+      ![Architecture](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/blob/main/A3/Screenshots/Part%20B/SDP-A3-Part%20B%20-%20Flowchart.png)
    - **PART C - Use AWS Lambda-SQS-SNS**:
       - **Designed AWS Architecture**: Created an AWS architecture using Lambda, SQS, and SNS services to simulate an online car delivery service for HalifaxTaxi.
       - **Role and Resource Setup**: Established IAM roles with necessary permissions, and utilized the Serverless Framework to configure resources and deploy Lambda functions.
       - **Lambda Functions**: Developed two Lambda functions, one to generate random car order details and publish them to an SNS topic, and another to consume messages from an SQS queue and send order details via email using SNS.
       - **Event Triggering**: Employed CloudWatch Events Rules to trigger the Lambda function periodically every 2 minutes, and ensured proper message flow between SNS topics and SQS queues.
-      - **Testing and Validation**: Conducted testing to verify message generation, publication, consumption, and email notification functionalities, ensuring a robust and functional online car delivery system. \
+      - **Testing and Validation**: Conducted testing to verify message generation, publication, consumption, and email notification functionalities, ensuring a robust and functional online car delivery system.
+      - #### Architecture
+      ![Architecture](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/blob/main/A3/Screenshots/Part%20C/SDP-A3-Part%20C%20-%20Flowchart.png)
         
    - **Keywords: AWS Lambda, S3, DynamoDB, Serverless Framework, SNS, SQS, IAM Role, Event-Driven, CloudWatch, Amazon RDS.
