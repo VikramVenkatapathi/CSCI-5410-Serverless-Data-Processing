@@ -30,8 +30,13 @@
       - **Cloud Run Deployment**: Deployed container images as services on Google Cloud Run, configuring appropriate ports and settings.
       - **User Registration and Authentication**: Implemented user registration and authentication logic in Container-1 and Container-2, respectively, securely storing user data in Firestore collections.
       - **Session Management**: Container-3 managed user sessions, updated user state (online/offline) in the Firestore database, and provided real-time information on online users.  
-   -  **PART C**:
-   - **Keywords: **
+   -  **PART C - Building a Chatbot: Using AWS Lex**:
+      - **Create Chatbot**: Utilized AWS Lex to build a chatbot for a Taxi and Car rental service, designing it to handle user requests for both taxi rides and self-drive rentals.
+      - **Intents and Sample Utterances**: Defined two intents, "TaxiRequest" and "SelfDriveRequest," with appropriate sample utterances to capture user requests accurately.
+      - **Slot Configuration**: Set up slots to gather essential information from users, such as pickup address, pickup date, pickup time, vehicle type, and the number of vehicles. Configured prompts for each slot to guide user input.
+      - **Confirmation Prompts**: Implemented confirmation prompts with variable placeholders to confirm user requests, ensuring accuracy before proceeding.
+      - **Fulfillment Logic**: Established fulfillment logic for both intents, providing success and failure messages to acknowledge user requests and handle potential issues.  
+   - **Keywords: GCP, Containerized Application, Firestore, Microservices, Docker Images, Artifact Registry, Cloud Run, AWS Lex, Chatbot, Intents, Slots, Fulfillment Logic, Self-Drive, Taxi Service, User Interaction.**
 
 3. **[Assignment 3](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/tree/main/A3):**
    - **PART A - Provide a summary**:
