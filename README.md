@@ -13,7 +13,8 @@
       - **Secure AWS Access Management**: Ensured secure AWS access using ProfileCredentialsProvider for managing Access Key ID and Secret Access Key.
       - **Documentation and Transparency**: Thoroughly documented the codebase, referencing official AWS SDK documentation for code clarity and transparency.
       - **Static Website Hosting**: Configured static website hosting for the S3 bucket, adjusting permissions to enable public read access and confirming website availability, gaining valuable AWS and Java programming experience.
-      - **Architecture**: ![Architecture](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/blob/main/A1/Output%20screenshots/Flowchart.png)
+      - #### Architecture
+      ![Architecture](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/blob/main/A1/Output%20screenshots/Flowchart.png)
    
    - **Keywords: AWS S3, Serverless Computing, AWS SDK for Java, Reinforcement Learning, Long Short-Term Memory (LSTM), GitLab, Maven, HTML, Cold Start Problem, Resource Utilization, Access Control, and Cloud Computing**
 
