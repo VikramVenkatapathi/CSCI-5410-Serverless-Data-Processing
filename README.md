@@ -39,7 +39,23 @@
    - **Keywords: GCP, Containerized Application, Firestore, Microservices, Docker Images, Artifact Registry, Cloud Run, AWS Lex, Chatbot, Intents, Slots, Fulfillment Logic, Self-Drive, Taxi Service, User Interaction.**
 
 3. **[Assignment 3](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/tree/main/A3):**
-   - **PART A - Provide a summary**:
-   - **PART B - **:
-   - **PART C - **:
-   - **Keywords: **
+   - **PART A - Explore & Build a Use Case**:
+      - **Scenario**: Utilizing AWS Kinesis, we transform inventory management at Atlantic Superstore, enhancing accuracy and customer satisfaction
+      - **Use Case**: Real-time data from IoT devices and POS systems is streamed through Kinesis, enabling demand forecasting, automated reordering, and sentiment analysis via AWS services.
+      - **Architecture**: The system includes IoT Core, Kinesis Data Streams, Analytics, Lambda, Comprehend, DynamoDB, and QuickSight, ensuring real-time insights.
+      - **Benefits**: Precise inventory control minimizes wastage, stockouts, and manual efforts, leading to improved customer satisfaction and operational efficiency.
+      - **AWS Services**: AWS Kinesis, IoT Core, Lambda, Comprehend, DynamoDB, and QuickSight power this innovative solution. 
+   - **PART B - Event-driven serverless application using AWS Lambda**:
+      - Bucket Creation: Created S3 buckets (SampleDataB00936916 and TagsB00936916) for data storage.
+      - Lambda Functions: Implemented two Lambda functions, "extractFeatures" and "accessDB," for data processing and database updates.
+      - DynamoDB Integration: Utilized DynamoDB to store named entities and their frequencies.
+      - Event Trigger: Configured S3 event notifications to trigger Lambda functions upon file uploads.
+      - Data Processing: Extracted named entities from uploaded files, generated JSON data, and updated DynamoDB records accordingly.
+      - Serverless Framework: Utilized [Serverless Framework](https://www.serverless.com/) to deploy and manage AWS resources and Lambda functions for this project. 
+   - **PART C - Use AWS Lambda-SQS-SNS**:
+      - **Designed AWS Architecture**: Created an AWS architecture using Lambda, SQS, and SNS services to simulate an online car delivery service for HalifaxTaxi.
+      - **Role and Resource Setup**: Established IAM roles with necessary permissions, and utilized the Serverless Framework to configure resources and deploy Lambda functions.
+      - **Lambda Functions**: Developed two Lambda functions, one to generate random car order details and publish them to an SNS topic, and another to consume messages from an SQS queue and send order details via email using SNS.
+      - **Event Triggering**: Employed CloudWatch Events Rules to trigger the Lambda function periodically every 2 minutes, and ensured proper message flow between SNS topics and SQS queues.
+      - **Testing and Validation**: Conducted testing to verify message generation, publication, consumption, and email notification functionalities, ensuring a robust and functional online car delivery system. 
+   - **Keywords: AWS Lambda, S3, DynamoDB, Serverless Framework, SNS, SQS, IAM Role, Event-Driven, CloudWatch, Amazon RDS.**
