@@ -4,7 +4,7 @@
 
 1. **[Assignment 1](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/tree/main/A1):**
    - **PART A - Provide a summary**:
-      - **Thorough Paper Review**: Meticulously examined the paper titled "Mitigating Cold Start Problem in Serverless Computing: A Reinforcement Learning Approach" by P. Vahidinia, B. Farahani, and F. S. Aliee".Focused on understanding the authors' two-layer approach to reducing cold start delays in serverless computing.
+      - **Thorough Paper Review**: Meticulously examined the paper titled ["Mitigating Cold Start Problem in Serverless Computing: A Reinforcement Learning Approach" by P. Vahidinia, B. Farahani, and F. S. Aliee"]( https://www.researchgate.net/publication/359754571_Mitigating_Cold_Start_Problem_in_Serverless_Computing_A_Reinforcement_Learning_Approach). Focused on understanding the authors' two-layer approach to reducing cold start delays in serverless computing.
       - **Identified Key Issue**: Pinpointed the primary issue addressed in the paper. The paper's main focus is optimizing serverless performance while minimizing memory waste, aiming to overcome the challenges posed by cold start delays.
       - **Detailed Experiment Analysis**: Conducted a comprehensive analysis of the experiments conducted by the authors. The evaluation involved the use of an I/O bound function, and the findings demonstrated the effectiveness of the authors' approach in mitigating cold start issues and improving resource utilization.
    - **PART B - AWS S3 experiment**:
@@ -18,7 +18,7 @@
 
 2. **[Assignment 2](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/tree/main/A2):**
    -  **PART A - Provide a summary**:
-      - **Thorough Paper Review**: In-depth analysis and review of the paper titled "Performance Evaluation of Distributed Systems in Multiple Clouds using Docker Swarm" authored by N. Naik. The review aimed to comprehend the paper's content, particularly its exploration of Docker Swarm-based distributed systems in multi-cloud environments.
+      - **Thorough Paper Review**: In-depth analysis and review of the paper titled ["Performance Evaluation of Distributed Systems in Multiple Clouds using Docker Swarm"](https://ieeexplore.ieee.org/abstract/document/9447123) authored by N. Naik. The review aimed to comprehend the paper's content, particularly its exploration of Docker Swarm-based distributed systems in multi-cloud environments.
       -  **Identified Key Issue**: The primary issue addressed in the paper is the efficient design and performance evaluation of distributed systems across multiple cloud platforms. It emphasizes the challenges of provisioning, configuration management, load balancing, and migration in such multi-cloud setups.
       -  **Detailed Experiment Analysis**: Extensive examination of the experiments carried out in the paper. The experiments involved setting up a test environment with multiple cloud providers, deploying a distributed application using Docker Swarm, and evaluating various performance metrics. These experiments validated the effectiveness of the proposed framework in terms of resource utilization, fault tolerance, and scalability.
    -  **PART B - Containerized Application Deployment using GCP**:    
@@ -51,4 +51,4 @@
       - **Event Triggering**: Employed CloudWatch Events Rules to trigger the Lambda function periodically every 2 minutes, and ensured proper message flow between SNS topics and SQS queues.
       - **Testing and Validation**: Conducted testing to verify message generation, publication, consumption, and email notification functionalities, ensuring a robust and functional online car delivery system. \
         
-   - **Keywords: AWS Lambda, S3, DynamoDB, Serverless Framework, SNS, SQS, IAM Role, Event-Driven, CloudWatch, Amazon RDS.**
+   - **Keywords: AWS Lambda, S3, DynamoDB, Serverless Framework, SNS, SQS, IAM Role, Event-Driven, CloudWatch, Amazon RDS.
