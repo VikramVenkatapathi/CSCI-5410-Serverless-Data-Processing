@@ -66,4 +66,4 @@
       - #### Architecture
       ![Architecture](https://github.com/VikramVenkatapathi/CSCI-5410-Serverless-Data-Processing/blob/main/A3/Screenshots/Part%20C/SDP-A3-Part%20C%20-%20Flowchart.png)
         
-   - **Keywords: AWS Lambda, S3, DynamoDB, Serverless Framework, SNS, SQS, IAM Role, Event-Driven, CloudWatch, Amazon RDS.
+   - **Keywords: AWS Lambda, S3, DynamoDB, Serverless Framework, SNS, SQS, IAM Role, Event-Driven, CloudWatch, Amazon RDS.**
